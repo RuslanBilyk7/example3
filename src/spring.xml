@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="poeticDuke" class="com.PoeticJuggler">
+        <!--<bean id="duke" class="com.PoeticJuggler">-->
+        <constructor-arg value="15"></constructor-arg>
+        <constructor-arg ref="sonnet29"></constructor-arg>
+
+
+    </bean>
+
+    <bean id="sonnet29" class="com.Sonnet29"></bean>
+</beans>
+
+        <!--Элемент <bean> является самым основным в конфигурационном файле Spring. Он предписывает фреймворку Spring создать объект.
+
+        Однако использовать атрибут value для инициализации второго аргумента конструктора нельзя, потому что Poem не является прос-
+тым типом. Для передачи ссылок на другие компоненты следует использовать атрибут ref . В данном случае это должна быть ссылка на
+компонент с идентификатором sonnet29. Контейнер Spring – это не просто механизм создания компонентов. Когда фреймворк Spring
+встречает определения компонентов sonnet29 и poeticDuke, он выполняет дополнительные действия, которые можно выразить следующим
+программным кодом:
+Poem sonnet29 = new Sonnet29();
+Performer poeticDuke = new PoeticJuggler(15, sonnet29);
+
+        -->
