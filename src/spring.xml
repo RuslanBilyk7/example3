@@ -3,15 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="poeticDuke" class="com.PoeticJuggler">
+    <!--<bean id="poeticDuke" class="com.PoeticJuggler">-->
         <!--<bean id="duke" class="com.PoeticJuggler">-->
-        <constructor-arg value="15"></constructor-arg>
-        <constructor-arg ref="sonnet29"></constructor-arg>
+        <!--<constructor-arg value="15"></constructor-arg>-->
+        <!--<constructor-arg ref="sonnet29"></constructor-arg>-->
 
 
+    <!--</bean>-->
+
+    <!--<bean id="sonnet29" class="com.Sonnet29"></bean>-->
+
+
+    <bean id="kenny" class="com.Instrumentalist">
+        <property name="song" value="Jingle Bells"/>
+        <property name="instrument" ref="saxophone"/>
     </bean>
 
-    <bean id="sonnet29" class="com.Sonnet29"></bean>
+    <bean id="saxophone" class="com.Saxophone"/>
 </beans>
 
         <!--Элемент <bean> является самым основным в конфигурационном файле Spring. Он предписывает фреймворку Spring создать объект.
