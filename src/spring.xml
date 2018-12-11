@@ -4,9 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--<bean id="poeticDuke" class="com.PoeticJuggler">-->
-        <!--<bean id="duke" class="com.PoeticJuggler">-->
-        <!--<constructor-arg value="15"></constructor-arg>-->
-        <!--<constructor-arg ref="sonnet29"></constructor-arg>-->
+    <!--<bean id="duke" class="com.PoeticJuggler">-->
+    <!--<constructor-arg value="15"></constructor-arg>-->
+    <!--<constructor-arg ref="sonnet29"></constructor-arg>-->
 
 
     <!--</bean>-->
@@ -16,10 +16,50 @@
 
     <bean id="kenny" class="com.Instrumentalist">
         <property name="song" value="Jingle Bells"/>
-        <property name="instrument" ref="saxophone"/>
+        <property name="instrument" ref="piano"/>
+        <!--<property name="instrument" ref="saxophone"/>-->
     </bean>
 
-    <bean id="saxophone" class="com.Saxophone"/>
+    <!--<bean id="saxophone" class="com.Saxophone"/>-->
+
+    <bean id="piano" class="com.Piano"></bean>
+
+    <bean id="hank" class="com.OneManBand">
+        <!--<property name="instruments">-->
+        <!--<list>-->
+        <!--<ref bean="guitar"></ref>-->
+        <!--<ref bean="cymbal"></ref>-->
+        <!--<ref bean="harmonica"></ref>-->
+        <!--Когда выступает человек-оркестр (OneManBand), звук каждого инструмента выводится методом perform() в процессе выполнения итераций по коллекции инструментов.-->
+        <!--</list>-->
+        <!--</property>-->
+        <!--</bean>-->
+        <!--<bean id="guitar" class="com.Saxophone"/>-->
+        <!--<bean id="cymbal" class="com.Saxophone"/>-->
+        <!--<bean id="harmonica" class="com.Saxophone"/>-->
+        <property name="instruments">
+            <map>
+                <entry key="GUITAR" value-ref="saxophone"></entry>
+                <entry key="CYMBAL" value-ref="saxophone"></entry>
+                <entry key="HARMONICA" value-ref="saxophone"></entry>
+                <!--Элемент <map> объявляет значение типа java.util.Map. Каждый элемент <entry> определяет один элемент отображения.Здесь атрибут key определяет ключ элемента отображения, а атрибут value-ref – значение элемента отображения как ссылку на
+другой компонент внутри контекста Spring.
+В нашем примере атрибут key используется для определения строкового ключа, а атрибут value-ref – для определения ссылоч-
+ного значения, однако в действительности каждый элемент <entry> имеет по два атрибута для определения ключа и значения элемента
+отображения.
+Элемент <map> – это единственный способ внедрения пар ключ/значение в свойства компонента, когда один из объектов не является
+строкой. -->
+            </map>
+        </property>
+    </bean>
+
+        <bean id="saxophone" class="com.Saxophone"/>
+
+
+    <!--После внесения этих изменений Кенни будет играть на фортепиано вместо саксофона. Однако, так как класс Instrumentalist ис-
+пользует свое свойство instrument только через методы интерфейса Instrument, нам не пришлось ничего менять в классе Instrumentalist,
+чтобы обеспечить поддержку новой реализации класса Instrument. Несмотря на то что музыкант (Instrumentalist) способен играть и на сак-
+софоне (Saxophone), и на фортепиано (Piano), он не имеет тесной связи ни с тем, ни с другим инструментом.-->
 </beans>
 
         <!--Элемент <bean> является самым основным в конфигурационном файле Spring. Он предписывает фреймворку Spring создать объект.
@@ -33,3 +73,5 @@ Poem sonnet29 = new Sonnet29();
 Performer poeticDuke = new PoeticJuggler(15, sonnet29);
 
         -->
+
+        <!--Так как члены отображения представлены парами ключ/значение, простых элементов <list> или <set> будет недостаточно для связывания свойства. Вместо этого для конфигурирования свойства instruments в следующем объявлении компонента hank используется элемент <map>:-->
